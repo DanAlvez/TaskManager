@@ -1,0 +1,52 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-400 leading-tight">
+            {{ __('Criar Nova Categoria') }}
+        </h2>
+    </x-slot>
+
+    {{-- Botão criar nova categoria --}}
+    <div class="max-w-7xl mx-auto mt-6 px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-end">
+            <x-secondary-button>
+                <a href="{{ route('categories.index') }}">{{ __('Voltar') }}</a>
+            </x-secondary-button>
+        </div>
+    </div>
+
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            {{-- Seção --}}
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    <form method="POST" action="{{ route('categories.store') }}">
+                        @csrf
+                        <header class="mb-4">
+                            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                {{ __('Criação de Nova Categoria') }}
+                            </h2>
+
+                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                {{ __("Preencha o formulário abaixo para criar uma nova categoria.") }}
+                            </p>
+                        </header>
+
+
+                        <!-- Nome -->
+                        <div>
+                            <x-input-label for="name" :value="__('Nome da Categoria')" />
+                            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        </div>
+
+                        <div class="flex items-center justify-end mt-4">
+                            <x-primary-button class="ml-4">
+                                {{ __('Criar Categoria') }}
+                            </x-primary-button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
