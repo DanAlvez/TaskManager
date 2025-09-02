@@ -35,6 +35,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
+                            <span class="material-symbols-outlined" style="color: #ccc; font-size: 18px">account_circle</span>
                             {{ __('Perfil') }}
                         </x-dropdown-link>
 
@@ -45,6 +46,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
+                                <span class="material-symbols-outlined" style="color: #ccc; font-size: 18px">logout</span>
                                 {{ __('Sair') }}
                             </x-dropdown-link>
                         </form>
