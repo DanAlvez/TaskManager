@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" alt="{{ config('app.name', 'TaskManager') }}"/>
                     </a>
                 </div>
 
@@ -14,6 +14,12 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Ínicio') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                        {{ __('Categorias') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -35,7 +41,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            <span class="material-symbols-outlined" style="color: #ccc; font-size: 18px">account_circle</span>
+                            <span class="material-symbols-outlined" style="color: #ccc; font-size: 18px; align-self: center">account_circle</span>
                             {{ __('Perfil') }}
                         </x-dropdown-link>
 
