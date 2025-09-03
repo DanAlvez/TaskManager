@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Http\Requests\StoreTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -31,7 +30,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreCategoryRequest $request)
     {
         $data = [
             'name' => $request->name,
@@ -68,7 +67,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTaskRequest $request, string $id)
+    public function update(UpdateCategoryRequest $request, string $id)
     {
         $category = Category::findOrFail($id);
         $category->name = $request->name;

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -11,7 +13,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        return view('tasks.index');
     }
 
     /**
@@ -19,15 +21,28 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        $categories = auth()->user()->categories()->get();
+        return view('tasks.create', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
-        //
+        $task = [
+            'title' => $request->name,
+            'description' => $request->description,
+            'due_date' => $request->due_date,
+            'status' => $request->status,
+            'priority' => $request->priority,
+            'category_id' => $request->category_id,
+            'user_id' => auth()->id(),
+        ];
+        Task::create($task);
+        return redirect()->route('tasks.index')->with('success', 'Tarefa criada com sucesso!');
     }
 
     /**
