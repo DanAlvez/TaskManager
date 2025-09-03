@@ -40,7 +40,7 @@
                                         <td class="py-4 px-6">
                                             <a class="text-lg font-medium text-gray-900 dark:text-gray-100 flex gap-4" href="{{ route('tasks.show', $task) }}">
                                                 <span class="material-symbols-outlined" style="color: #ccc; font-size: 24px; align-self: center;">visibility</span>
-                                                {{ $task->name }}
+                                                {{ $task->title }}
                                             </a>
                                         </td>
                                         <td class="float-right text-right flex space-x-2 justify-end py-4 px-6">
