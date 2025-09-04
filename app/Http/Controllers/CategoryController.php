@@ -46,7 +46,7 @@ class CategoryController extends Controller
     public function show(string $id)
     {
         $category = Category::findOrFail($id);
-        $tasks = $category->tasks()->get(); // Carrega as tarefas relacionadas à categoria (EAGER LOADING)
+        $tasks = $category->tasks()->orderBy('status')->get(); // Carrega as tarefas relacionadas à categoria (EAGER LOADING)
         return view('categories.show', [
             'category' => $category,
             'tasks' => $tasks,

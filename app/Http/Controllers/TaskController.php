@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
-use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -13,7 +13,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('tasks.index');
+        $tasks = auth()->user()->tasks()->orderBy('status')->get();
+        return view('tasks.index', [
+            'tasks' => $tasks,
+        ]);
     }
 
     /**
@@ -50,7 +53,8 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        return view('tasks.show', ['task' => $task]);
     }
 
     /**
@@ -58,15 +62,31 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $categories = auth()->user()->categories()->get();
+        return view('tasks.edit', [
+            'task' => $task,
+            'categories' => $categories,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateTaskRequest $request, string $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $taskUpdate = [
+            'title' => $request->name,
+            'description' => $request->description,
+            'due_date' => $request->due_date,
+            'status' => $request->status,
+            'priority' => $request->priority,
+            'category_id' => $request->category_id,
+            'user_id' => auth()->id(),
+        ];
+        $task->update($taskUpdate);
+        return redirect()->route('tasks.index')->with('success', 'Tarefa atualizada com sucesso!');
     }
 
     /**
@@ -74,6 +94,7 @@ class TaskController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Task::findOrFail($id)->delete();
+        return redirect()->route('tasks.index')->with('success', 'Tarefa excluida com sucesso!');
     }
 }
