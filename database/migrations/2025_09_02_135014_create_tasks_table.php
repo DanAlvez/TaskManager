@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('priority', ['alta', 'media', 'baixa'])->default('media');
             $table->enum('status', ['pendente', 'concluida'])->default('pendente');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
