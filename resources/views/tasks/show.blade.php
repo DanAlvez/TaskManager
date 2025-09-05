@@ -75,7 +75,7 @@
                                         Sem data de vencimento.
                                     </p>
                                 @else
-                                    @if ($task->due_date < now())
+                                    @if ($task->due_date < now() && $task->status != 'concluida')
                                         <h2 class="text-lg font-medium text-red-600 dark:text-red-400">
                                             {{ __('Atenção: Esta tarefa está atrasada!') }}
                                         </h2>
@@ -85,7 +85,7 @@
                                     </h2>
     
                                     <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                        {{ $task->due_date }}
+                                        {{ date('d/m/Y', strtotime($task->due_date)) }}
                                     </p>
                                 @endif
                             </div>

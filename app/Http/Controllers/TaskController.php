@@ -13,7 +13,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = auth()->user()->tasks()->orderBy('status')->get();
+        $tasks = auth()->user()->tasks()->orderBy('status')->orderBy('priority')->orderBy('title')->paginate(5);
         return view('tasks.index', [
             'tasks' => $tasks,
         ]);

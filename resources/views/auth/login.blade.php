@@ -38,6 +38,7 @@
                     {{ __('Esqueceu a senha?') }}
                 </a>
             @endif
+            <a href="{{ route('register') }}" class="ms-3"><x-secondary-button>{{ __('Criar conta') }}</x-secondary-button></a>
 
             <x-primary-button class="ms-3">
                 {{ __('Entrar') }}
