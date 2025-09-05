@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-400 leading-tight">
-            {{ __('Suas Categorias') }}
+        <h2 class="font-semibold text-3xl text-white leading-tight flex items-center gap-2">
+            📂 {{ __('Suas Categorias') }}
         </h2>
     </x-slot>
 
@@ -32,7 +32,7 @@
                     @else
                         <table class="w-full">
                             <tr class="border-b border-gray-400 dark:border-gray-400">
-                                <th class="py-4 px-6 text-left text-xl text-gray-900 dark:text-gray-100">Categorias</th>
+                                <th class="py-4 px-6 text-left text-xl text-gray-900 dark:text-gray-100">Categoria</th>
                                 <th class="py-4 px-6 text-right text-2xl text-gray-900 dark:text-gray-100">Ações</th>
                             </tr>
                             @foreach ($categories as $category)
@@ -45,18 +45,18 @@
                                         </td>
                                         <td class="float-right text-right flex space-x-2 justify-end py-4 px-6">
                                             {{-- Botões de ação --}}
-                                            <x-secondary-button class="">
-                                                <a href="{{ route('categories.show', $category) }}" class="flex gap-2">
+                                            <a href="{{ route('categories.show', $category) }}" class=>
+                                                <x-secondary-button class="flex gap-2">
                                                     <span class="material-symbols-outlined" style="color: #ccc; font-size: 16px; align-self: center;">visibility</span>
                                                     {{ __('Ver Tarefas') }}
-                                                </a>
-                                            </x-secondary-button>
-                                            <x-secondary-button class="me-2">
-                                                <a href="{{ route('categories.edit', $category) }}" class="flex gap-2">
+                                                </x-secondary-button>
+                                            </a>
+                                            <a href="{{ route('categories.edit', $category) }}" class="">
+                                                <x-secondary-button class="flex gap-2">
                                                     <span class="material-symbols-outlined" style="color: #ccc; font-size: 16px; align-self: center;">edit</span>
                                                     {{ __('Editar') }}
-                                                </a>
-                                            </x-secondary-button>
+                                                </x-secondary-button>
+                                            </a>
                                             <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-category-deletion-{{ $category->id }}')" class="flex gap-2">
                                                 <span class="material-symbols-outlined" style="color: #ccc; font-size: 16px; align-self: center;">delete</span>
                                                 {{ __('Excluir') }}
@@ -88,6 +88,14 @@
                                         </td>
                                     </tr>
                             @endforeach
+                            {{-- Paginação --}}
+                            @if ($categories->hasPages())
+                                <tr>
+                                    <td colspan="4" class="py-4 px-6">
+                                        {{ $categories->links() }}
+                                    </td>
+                                </tr>
+                            @endif
                         </table>
                     @endif
                 </div>

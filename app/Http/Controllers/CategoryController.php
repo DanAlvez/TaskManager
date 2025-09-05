@@ -13,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = auth()->user()->categories()->withCount('tasks')->get();
+        $categories = auth()->user()->categories()->withCount('tasks')->orderBy('name')->paginate(5);
         return view('categories.index', [
             'categories' => $categories,
         ]);
@@ -46,7 +46,7 @@ class CategoryController extends Controller
     public function show(string $id)
     {
         $category = Category::findOrFail($id);
-        $tasks = $category->tasks()->orderBy('status')->get(); // Carrega as tarefas relacionadas à categoria (EAGER LOADING)
+        $tasks = $category->tasks()->orderBy('status')->orderBy('priority')->paginate(5); // Carrega as tarefas relacionadas à categoria (EAGER LOADING)
         return view('categories.show', [
             'category' => $category,
             'tasks' => $tasks,
