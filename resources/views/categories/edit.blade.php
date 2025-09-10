@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-400 leading-tight">
-            Editar a Categoria {{ $category->name }}
+        <h2 class="text-3xl font-bold text-white">
+            ✏ Editar a Categoria {{ $category->name }}
         </h2>
     </x-slot>
 
