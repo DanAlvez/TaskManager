@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-400 leading-tight">
-            {{ __('Editar Tarefa') }}
+        <h2 class="text-3xl font-bold text-white">
+            ✏ {{ __('Editar Tarefa') }}
         </h2>
     </x-slot>
 
@@ -33,7 +33,7 @@
                         </header>
 
 
-                        <div class="grid grid-cols-2 w-full gap-4">
+                        <div class="grid grid-cols-2 max-sm:grid-cols-1 w-full gap-4">
                             <!-- Nome -->
                             <div class="mt-4">
                                 <x-input-label for="name" :value="__('Nome da Tarefa')" />

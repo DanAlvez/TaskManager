@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-400 leading-tight">
-            Tarefa {{ $task->title }}
+            📄 Tarefa {{ $task->title }}
         </h2>
     </x-slot>
 
