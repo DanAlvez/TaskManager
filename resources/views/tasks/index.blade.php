@@ -41,7 +41,8 @@
                             @foreach ($tasks as $task)
                                     <tr class="border-b border-gray-200 dark:border-gray-700 mt-12">
                                         <td class="py-4 whitespace-nowrap px-6">
-                                            <a class="text-lg font-medium text-gray-900 dark:text-gray-100 flex gap-4" href="{{ route('tasks.show', $task) }}">
+                                            <a class="text-lg items-center font-medium text-gray-900 dark:text-gray-100 flex gap-4" href="{{ route('tasks.show', $task) }}">
+                                                <span class="inline-block w-3 h-3 rounded-full" @if ($task->category) style="background-color: {{ $task->category->color }};"@endif></span>
                                                 <span class="material-symbols-outlined" style="color: #ccc; font-size: 24px; align-self: center;">visibility</span>
                                                 {{ $task->title }}
                                             </a>

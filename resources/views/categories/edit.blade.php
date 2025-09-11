@@ -40,6 +40,13 @@
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
 
+                        {{-- Tag --}}
+
+                        <div class="mt-4">
+                            <x-input-label for="color" :value="__('Etiqueta da Categoria')" />
+                            <x-text-input id="color" class="block mt-1 w-full" type="color" name="color" :value="old('color', '#ff0000')" required />
+                            <x-input-error :messages="$errors->get('color')" class="mt-2" />
+                        </div>                        
                         <div class="flex items-center justify-end mt-4">
                             <x-primary-button class="ml-4">
                                 {{ __('Atualizar Categoria') }}
