@@ -39,12 +39,13 @@
                             @foreach ($categories as $category)
                                 <tr class="border-b border-gray-200 dark:border-gray-700 mt-12">
                                     <td class="py-4 px-6 whitespace-nowrap">
-                                        <a class="text-lg font-medium text-gray-900 dark:text-gray-100 flex gap-4" href="{{ route('categories.show', $category) }}">
+                                        <a class="text-lg items-center font-medium text-gray-900 dark:text-gray-100 flex gap-4" href="{{ route('categories.show', $category) }}">
+                                            <span class="inline-block w-3 h-3 rounded-full" style="background-color: {{ $category->color }};"></span>
                                             <span class="material-symbols-outlined" style="color: #ccc; font-size: 24px; align-self: center;">visibility</span>
                                             {{ $category->name }}
                                         </a>
                                     </td>
-                                    <td class="float-right flex-wrap text-right flex whitespace-nowrap space-x-2 justify-end py-4 px-6">
+                                    <td class="float-right text-right flex whitespace-nowrap space-x-2 justify-end py-4 px-6">
                                         {{-- Botões de ação --}}
                                         <a href="{{ route('categories.show', $category) }}">
                                             <x-secondary-button class="flex gap-2">

@@ -35,6 +35,7 @@ class CategoryController extends Controller
         $data = [
             'name' => $request->name,
             'user_id' => auth()->id(),
+            'color' => $request->color, // Adiciona a cor da categoria
         ];
         Category::create($data);
         return redirect()->route('categories.index')->with('success', 'Categoria criada com sucesso!');
@@ -71,6 +72,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->name = $request->name;
+        $category->color = $request->color;
         $category->save();
         return redirect()->route('categories.index')->with('success', 'Categoria atualizada com sucesso!');
     }
