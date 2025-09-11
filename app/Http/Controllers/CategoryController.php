@@ -38,7 +38,10 @@ class CategoryController extends Controller
             'color' => $request->color, // Adiciona a cor da categoria
         ];
         Category::create($data);
-        return redirect()->route('categories.index')->with('success', 'Categoria criada com sucesso!');
+        return redirect()->route('categories.index')->with('notification', [
+            'type' => 'success',
+            'message' => 'Categoria criada com sucesso!'
+        ]);
     }
 
     /**
@@ -74,7 +77,10 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->color = $request->color;
         $category->save();
-        return redirect()->route('categories.index')->with('success', 'Categoria atualizada com sucesso!');
+        return redirect()->route('categories.index')->with('notification', [
+            'type' => 'success',
+            'message' => 'Categoria atualizada com sucesso!'
+        ]);
     }
 
     /**
@@ -83,6 +89,9 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         Category::findOrFail($id)->delete();
-        return redirect()->route('categories.index')->with('success', 'Categoria excluída com sucesso!');
+        return redirect()->route('categories.index')->with('notification', [
+            'type' => 'error',
+            'message' => 'Categoria deletada com sucesso!'
+        ]);
     }
 }

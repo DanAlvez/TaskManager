@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    {{-- Botão criar nova categoria --}}
+    {{-- Botão criar nova tarefa --}}
     <div class="max-w-7xl mx-auto mt-6 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
             <x-secondary-button>
