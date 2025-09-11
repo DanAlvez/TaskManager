@@ -16,10 +16,36 @@
         <div class="mt-4">
             <x-input-label for="password" :value="__('Senha:')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            <div class="relative">
+                <x-text-input id="password" class="block mt-1 w-full"
+                                type="password"
+                                name="password"
+                                required autocomplete="current-password" />
+                {{-- Visibility Toggle --}}
+                <span class="material-symbols-outlined absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer" id="togglePassword" onclick="togglePasswordVisibility()">
+                    visibility
+                </span>
+            </div>
+            <script>
+                function togglePasswordVisibility() {
+                    const passwordInput = document.getElementById('password');
+                    const toggleIcon = document.getElementById('togglePassword');
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        toggleIcon.textContent = 'visibility_off';
+                    } else {
+                        passwordInput.type = 'password';
+                        toggleIcon.textContent = 'visibility';
+                    }
+                }
+            </script>
+            <style>
+                #togglePassword {
+                    font-size: 24px;
+                    user-select: none;
+                    color: #ccc;
+                }
+            </style>
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>

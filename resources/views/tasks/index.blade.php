@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    {{-- Botão criar nova categoria --}}
+    {{-- Botão criar nova tarefa --}}
     <div class="max-w-7xl mx-auto mt-6 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
             <x-secondary-button>
@@ -14,10 +14,24 @@
         </div>
     </div>
 
-    @if (session('sucess'))
+    {{-- Notificação --}}
+    @if (session('notification'))
+    @php
+        $type = session('notification')['type'];
+        $message = session('notification')['message'];
+        $bg = $type === 'success' ? 'bg-green-100 dark:bg-green-200 text-green-700 dark:text-green-800' : ($type === 'error' ? 'bg-red-100 dark:bg-red-200 text-red-700 dark:text-red-800' : 'bg-yellow-100 dark:bg-yellow-200 text-yellow-700 dark:text-yellow-800');
+    @endphp
         <div class="max-w-7xl mx-auto mt-6 px-4 sm:px-6 lg:px-8">
-            <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
-                {{ session('success') }}
+            <div class="w-full flex justify-between p-4 text-sm rounded-lg {{ $bg }}" role="alert">
+                <div class="content-center">
+                    {{ $message }}
+                    <span>{{ $type === 'success' ? '✅' : ($type === 'error' ? '❌' : '⚠️') }}</span>
+                </div>
+
+                {{-- Fechar notificação --}}
+                <button type="button" class="text-sm font-medium text-gray-900 dark:text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 inline-flex items-center" data-dismiss-target=".alert" aria-label="Close" onclick="this.parentElement.style.display='none';">
+                    <span class="material-symbols-outlined float-right" style="font-size: 16px; align-self: center;">close</span>
+                </button>
             </div>
         </div>
     @endif

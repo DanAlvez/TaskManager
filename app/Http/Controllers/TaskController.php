@@ -45,7 +45,10 @@ class TaskController extends Controller
             'user_id' => auth()->id(),
         ];
         Task::create($task);
-        return redirect()->route('tasks.index')->with('success', 'Tarefa criada com sucesso!');
+        return redirect()->route('tasks.index')->with('notification', [
+            'type' => 'success',
+            'message' => 'Tarefa criada com sucesso!'
+        ]);
     }
 
     /**
@@ -86,7 +89,10 @@ class TaskController extends Controller
             'user_id' => auth()->id(),
         ];
         $task->update($taskUpdate);
-        return redirect()->route('tasks.index')->with('success', 'Tarefa atualizada com sucesso!');
+        return redirect()->route('tasks.index')->with('notification', [
+            'type' => 'success',
+            'message' => 'Tarefa atualizada com sucesso!'
+        ]);
     }
 
     /**
@@ -95,6 +101,9 @@ class TaskController extends Controller
     public function destroy(string $id)
     {
         Task::findOrFail($id)->delete();
-        return redirect()->route('tasks.index')->with('success', 'Tarefa excluida com sucesso!');
+        return redirect()->route('tasks.index')->with('notification', [
+            'type' => 'error',
+            'message' => 'Tarefa deletada com sucesso!'
+        ]);
     }
 }
